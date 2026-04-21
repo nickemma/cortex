@@ -1,0 +1,10 @@
+[project]
+name = "cortex"
+version = "0.1.0"
+description = "Cortex is a minimal AI-powered Cli assistant built with Google's gemini API for fast, Intelligent terminal based interaction"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-genai==1.12.1",
+    "python-dotenv==1.1.0",
+]
