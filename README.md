@@ -67,6 +67,8 @@ cd cortex
 
 # Install dependencies
 uv sync
+```
+---
 
 ## Author
 
@@ -87,8 +89,3 @@ uv sync
 <div align="center">
 
 **Building Systems, Building Faith — One Commit at a Time**
-
-[⬆ Back to Top](#meridian--geo-distributed-key-value-store-with-tunable-consistency)
-
-</div>
-```
