@@ -6,6 +6,9 @@ from google import genai
 from google.genai import types
 from google.genai.errors import ClientError, ServerError
 
+from call_function import available_functions
+from prompts import system_prompt
+
 
 def main():
     print("Hello from cortex!")
@@ -32,6 +35,11 @@ def main():
         response = client.models.generate_content(
             model="gemini-2.5-flash",
             contents=messages,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+                tools=[available_functions],
+                temperature=0,
+            ),
         )
 
     except (ServerError, ClientError):
@@ -61,8 +69,11 @@ def main():
         print(f"Prompt tokens: {prompt_tokens}")
         print(f"Response tokens: {response_tokens}")
 
-    print("Response")
-    print(response.text)
+    if response.function_calls:
+        for function_call in response.function_calls:
+            print(f"Calling function: {function_call.name}({function_call.args})")
+    else:
+        print(response.text)
 
 
 if __name__ == "__main__":
